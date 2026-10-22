@@ -13,5 +13,6 @@ const resellerRouter = require('../src/modules/reseller/reseller.routes')
 const demoRouter = require('../src/modules/demo/demo.routes')
 const apiKeyRouter = require('../src/modules/apiKey/apiKey.routes')
 const notificationRouter = require('../src/modules/notification/notification.routes')
+const paymentRouter = require('../src/modules/payment/payment.routes')
 
-module.exports = { userRouter, playListRouter, subscriptionRouter, dashboardRouter, favoriteRouter, lockRouter, contentRouter, faqRouter, footerContentRouter, priceRouter, adminRouter, resellerRouter, demoRouter, apiKeyRouter, notificationRouter }
+module.exports = { userRouter, playListRouter, subscriptionRouter, dashboardRouter, favoriteRouter, lockRouter, contentRouter, faqRouter, footerContentRouter, priceRouter, adminRouter, resellerRouter, demoRouter, apiKeyRouter, notificationRouter, paymentRouter }
