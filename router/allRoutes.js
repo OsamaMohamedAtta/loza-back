@@ -1,0 +1,17 @@
+const userRouter = require('../src/modules/user/user.routes')
+const playListRouter = require('../src/modules/playList/playList.routes')
+const subscriptionRouter = require('../src/modules/subscription/subscription.routes')
+const dashboardRouter = require('../src/modules/dashboard/dashboard.routes')
+const favoriteRouter = require('../src/modules/favorite/favorite.routes')
+const lockRouter = require('../src/modules/lock/lock.routes')
+const contentRouter = require('../src/modules/content/content.routes')
+const faqRouter = require('../src/modules/faq/faq.routes')
+const footerContentRouter = require('../src/modules/footerContent/footerContent.routes')
+const priceRouter = require('../src/modules/price/price.routes')
+const adminRouter = require('../src/modules/admin/admin.routes')
+const resellerRouter = require('../src/modules/reseller/reseller.routes')
+const demoRouter = require('../src/modules/demo/demo.routes')
+const apiKeyRouter = require('../src/modules/apiKey/apiKey.routes')
+const notificationRouter = require('../src/modules/notification/notification.routes')
+
+module.exports = { userRouter, playListRouter, subscriptionRouter, dashboardRouter, favoriteRouter, lockRouter, contentRouter, faqRouter, footerContentRouter, priceRouter, adminRouter, resellerRouter, demoRouter, apiKeyRouter, notificationRouter }

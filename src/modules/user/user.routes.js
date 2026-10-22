@@ -1,0 +1,23 @@
+const userRouter = require('express').Router()
+const login = require('./controller/login.controller')
+const checkMac = require('./controller/checkMac.controller')
+const userInfo = require('./controller/userInfo.controller')
+const getUsers = require('./controller/getUsers.controller')
+const addCode = require('./controller/addCode.controller')
+const searchUser = require('./controller/searchUser.controller')
+const switchMac = require('./controller/switchMac.controller')
+const deviceInfo = require('./controller/deviceInfo.controller')
+const playInformation = require('./controller/playInformation.controller')
+const { isUser, isAdmin } = require('../../middleware/auth')
+
+userRouter.post('/user/checkMac', checkMac)
+userRouter.post('/user/playlist_information', playInformation)
+userRouter.post('/user/login', login)
+userRouter.get('/user/userInfo', isUser, userInfo)
+userRouter.get('/user/get', isAdmin, getUsers)
+userRouter.get('/user/search', isAdmin, searchUser)
+userRouter.post('/user/addCode', addCode)
+userRouter.post('/user/switch', isUser, switchMac)
+userRouter.get('/user/deviceInfo', deviceInfo)
+
+module.exports = userRouter;
