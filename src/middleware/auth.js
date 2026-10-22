@@ -44,6 +44,45 @@ const isUser = async (req, res, next) => {
     }
 };
 
+// Same as isUser but also lets in users whose subscription or trial has ended,
+// so they can see their status and pay (used by the payment routes only)
+const isUserAccount = async (req, res, next) => {
+    try {
+        const { authorization } = req.headers;
+
+        if (!authorization) {
+            return res.status(401).json({ message: 'Access token is missing' });
+        }
+
+        if (!authorization.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Invalid authorization format' });
+        }
+
+        const userToken = authorization.replace('Bearer ', '');
+
+        const { id } = jwt.verify(userToken, process.env.TOKEN_SECRET_KEY);
+
+        const user = await userModel.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (user.role !== 'User') {
+            return res.status(403).json({ message: 'You do not have permission to perform this operation' });
+        }
+
+        req.userData = user;
+
+        next();
+
+    } catch (error) {
+        return res.status(401).json({
+            message: 'Invalid or expired token'
+        });
+    }
+};
+
 const isAdmin = async (req, res, next) => {
     try {
         const { authorization } = req.headers;
@@ -148,4 +187,4 @@ const isSubReseller = async (req, res, next) => {
     }
 };
 
-module.exports = { isUser, isAdmin, isReseller, isSubReseller }
+module.exports = { isUser, isUserAccount, isAdmin, isReseller, isSubReseller }
